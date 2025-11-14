@@ -93,7 +93,14 @@ map.on('load',async()=>{
   radiusScale.domain([0,d3.max(stations,d=>d.totalTraffic)]);
 
   circles.attr('r',d=>radiusScale(d.totalTraffic))
-    .style('--departure-ratio',d=>d.totalTraffic?d.departures/d.totalTraffic:0.5)
+    .attr('fill', d => {
+  const ratio = d.totalTraffic ? d.departures / d.totalTraffic : 0.5;
+  const dep = d3.color('oklch(65% 0.15 250)');  
+  const arr = d3.color('oklch(70% 0.22 50)');   
+
+  const mix = d3.interpolateLab(arr, dep)(ratio);
+  return mix;
+})
     .each(function(d){
       d3.select(this).select('title')
         .text(`${d.totalTraffic} trips (${d.departures} departures, ${d.arrivals} arrivals)`);
@@ -111,7 +118,14 @@ map.on('load',async()=>{
     circles.data(filtered,d=>d.short_name)
       .join('circle')
       .attr('r',d=>radiusScale(d.totalTraffic))
-      .style('--departure-ratio',d=>d.totalTraffic?d.departures/d.totalTraffic:0.5)
+      .attr('fill', d => {
+  const ratio = d.totalTraffic ? d.departures / d.totalTraffic : 0.5;
+  const dep = d3.color('oklch(65% 0.15 250)');  
+  const arr = d3.color('oklch(70% 0.22 50)');   
+
+  const mix = d3.interpolateLab(arr, dep)(ratio);
+  return mix;
+})
       .each(function(d){
         d3.select(this).select('title')
           .text(`${d.totalTraffic} trips (${d.departures} departures, ${d.arrivals} arrivals)`);
