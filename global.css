@@ -2,7 +2,6 @@
   --gap: 1rem;
   --radius: 12px;
 
-
   --color-departures: steelblue;
   --color-arrivals: darkorange;
   --color: color-mix(in oklch,
@@ -21,8 +20,7 @@ html, body {
 body {
   font: 100%/1.5 system-ui, sans-serif;
   display: flex;
-  flex-flow: column;
-  min-height: 100vh;
+  flex-direction: column;
   max-width: 80rem;
   margin-inline: auto;
   padding: 1rem;
@@ -34,37 +32,48 @@ body {
   align-items: baseline;
   gap: var(--gap);
 }
-
 .app-header .time-filter {
   margin-left: auto;
   display: inline-flex;
   align-items: center;
   gap: .5rem;
 }
-
-#selected-time {
-  display: inline-block;
-  min-width: 4.25ch; 
-  text-align: right;
-}
-#any-time { opacity: .7; }
-
+#selected-time { min-width: 4.25ch; text-align: right; }
+#any-time { opacity:.7; }
 
 .legend {
   display: flex;
-  gap: 1px;              
-  margin-block: .5rem 0; 
+  gap: 1px;
+  margin-block: .5rem 0;
 }
-
 .legend.legend--blocks > div {
   flex: 1;
   padding: .5rem 1rem;
   border-radius: var(--radius);
   background: var(--color);
-  color: #111;
-  text-align: center;
-  font-weight: 600;
+  color:#111;
+  text-align:center;
+  font-weight:600;
 }
+.legend.legend--blocks > div:first-child { color:white; }
 
-.legend.legend--blocks > div:first-child { color: white; }
+.legend.legend--swatches {
+  display:flex;
+  flex-direction:column;
+  gap:0.25rem;
+  margin-block:.5rem 0;
+}
+.legend.legend--swatches .legend-item {
+  display:flex;
+  align-items:center;
+  gap:0.5rem;
+  font-weight:500;
+}
+.legend.legend--swatches .swatch {
+  width:1.25rem;
+  height:1.25rem;
+  border-radius:4px;
+  background:var(--color);
+  border:1px solid #ccc;
+}
 
