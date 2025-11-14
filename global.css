@@ -2,11 +2,8 @@
   --gap: 1rem;
   --radius: 12px;
 
-  --color-departures: steelblue;
-  --color-arrivals: darkorange;
-  --color: color-mix(in oklch,
-                     var(--color-departures) calc(100% * var(--departure-ratio)),
-                     var(--color-arrivals));
+  --color-departures: oklch(65% 0.15 250); 
+  --color-arrivals: oklch(70% 0.22 50);    
 }
 
 * { box-sizing: border-box; }
@@ -50,30 +47,67 @@ body {
   flex: 1;
   padding: .5rem 1rem;
   border-radius: var(--radius);
-  background: var(--color);
-  color:#111;
-  text-align:center;
-  font-weight:600;
+  text-align: center;
+  font-weight: 600;
+  color: #fff;
+  background: color-mix(in oklch,
+                        var(--color-departures) calc(100% * var(--departure-ratio)),
+                        var(--color-arrivals));
 }
-.legend.legend--blocks > div:first-child { color:white; }
 
 .legend.legend--swatches {
-  display:flex;
-  flex-direction:column;
-  gap:0.25rem;
-  margin-block:.5rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  margin-block: .5rem 0;
 }
 .legend.legend--swatches .legend-item {
-  display:flex;
-  align-items:center;
-  gap:0.5rem;
-  font-weight:500;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 500;
 }
 .legend.legend--swatches .swatch {
-  width:1.25rem;
-  height:1.25rem;
-  border-radius:4px;
-  background:var(--color);
-  border:1px solid #ccc;
+  width: 1.25rem;
+  height: 1.25rem;
+  border-radius: 4px;
+  background: color-mix(in oklch,
+                        var(--color-departures) calc(100% * var(--departure-ratio)),
+                        var(--color-arrivals));
+  border: 1px solid #ccc;
 }
 
+#map {
+  position: relative;
+  width: 100%;
+  height: min(75vh, 70rem);
+  border-radius: 16px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, .12);
+  overflow: hidden;
+}
+
+#map > svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+}
+
+#map circle {
+  --departure-ratio: 0.5;
+  fill: color-mix(in oklch,
+                  var(--color-departures) calc(100% * var(--departure-ratio)),
+                  var(--color-arrivals));
+  fill-opacity: 0.7;
+  stroke: white;
+  stroke-width: 1;
+  pointer-events: auto;
+  transition: fill 0.25s ease;
+}
+
+@media (max-width: 600px) {
+  .app-header { flex-wrap: wrap; }
+  .app-header .time-filter { margin-left: 0; }
+}
