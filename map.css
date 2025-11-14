@@ -17,9 +17,10 @@
 }
 
 #map circle {
-  fill:var(--color);
-  fill-opacity:.6;
-  stroke:white;
-  stroke-width:1;
-  pointer-events:auto;
+  stroke: white;
+  stroke-width: 0.5;
+  fill-opacity: 0.75;
+  pointer-events: auto;
+  transition: fill 0.25s ease, r 0.25s ease;
+  filter: drop-shadow(0 0 2px rgba(255,255,255,0.4));
 }
