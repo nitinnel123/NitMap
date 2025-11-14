@@ -57,10 +57,10 @@ map.on("load", async () => {
 
   map.addSource("boston",{type:"geojson",data:BOSTON});
   map.addLayer({id:"boston-lanes",type:"line",source:"boston",
-    paint:{"line-color":"#32D400","line-width":3,"line-opacity":0.4}});
+    paint:{"line-color":"#0B8A00","line-width":3,"line-opacity":0.4}});
   map.addSource("cambridge",{type:"geojson",data:CAMBRIDGE});
   map.addLayer({id:"cambridge-lanes",type:"line",source:"cambridge",
-    paint:{"line-color":"#32D400","line-width":3,"line-opacity":0.4}});
+    paint:{"line-color":"#0B8A00","line-width":3,"line-opacity":0.4}});
 
   const json = await d3.json(STATIONS);
   let stations = json.data.stations;
